@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Treasury | Nithya Handcraft Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2=family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- BRAND PALETTE (TAMIL TRADITIONAL LUXURY) --- */
+        :root {
+            --color-sandal: #fdfbf7;
+            --color-temple-maroon: #4a0e17;
+            --color-antique-gold: #d4a343;
+            --color-text-dark: #2b181b;
+            --color-white: #ffffff;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-sandal);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background-color: rgba(253, 251, 247, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(74, 14, 23, 0.08);
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            color: var(--color-temple-maroon);
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            display: block;
+            letter-spacing: 3px;
+            font-weight: 300;
+            text-transform: uppercase;
+            margin-top: -2px;
+            color: var(--color-antique-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 400;
+        }
+
+        .nav-links a:hover, .nav-links .active {
+            color: var(--color-antique-gold);
+        }
+
+        /* --- HEADER BANNER --- */
+        .page-header {
+            text-align: center;
+            padding: 5rem 0 3rem 0;
+            border-bottom: 1px solid rgba(74, 14, 23, 0.05);
+        }
+
+        .page-header h1 {
+            font-family: var(--font-serif);
+            font-size: 3rem;
+            color: var(--color-temple-maroon);
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .page-header p {
+            font-size: 0.95rem;
+            font-style: italic;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- FILTER TABS --- */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 1px solid rgba(74, 14, 23, 0.2);
+            color: var(--color-temple-maroon);
+            padding: 10px 24px;
+            font-family: var(--font-sans);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--color-temple-maroon);
+            color: var(--color-sandal);
+            border-color: var(--color-temple-maroon);
+        }
+
+        /* --- PRODUCT CATALOG GRID --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-bottom: 8rem;
+        }
+
+        .gallery-item {
+            background-color: var(--color-white);
+            border: 1px solid rgba(74, 14, 23, 0.03);
+            box-shadow: 0 4px 20px rgba(74, 14, 23, 0.02);
+            transition: var(--transition);
+            display: block;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(74, 14, 23, 0.06);
+        }
+
+        .img-box {
+            overflow: hidden;
+            aspect-ratio: 1 / 1;
+            background-color: #faf8f5;
+        }
+
+        .img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .img-box img {
+            transform: scale(1.04);
+        }
+
+        .item-details {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .item-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--color-antique-gold);
+            margin-bottom: 3px;
+            display: block;
+        }
+
+        .item-size {
+            font-size: 0.75rem;
+            opacity: 0.6;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .item-name {
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            color: var(--color-temple-maroon);
+            font-weight: 400;
+        }
+
+        /* --- LUXURY INTERACTIVE LIGHTBOX OVERLAY --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(43, 24, 27, 0.6);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: var(--color-sandal);
+            border: 1px solid var(--color-antique-gold);
+            width: 100%;
+            max-width: 850px;
+            position: relative;
+            box-shadow: 0 30px 70px rgba(74, 14, 23, 0.18);
+            transform: translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: var(--color-temple-maroon);
+            cursor: pointer;
+            z-index: 10;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--color-antique-gold);
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .modal-img-container {
+            flex: 1.1;
+            max-width: 50%;
+            aspect-ratio: 1 / 1;
+            background-color: #faf8f5;
+            border-right: 1px solid rgba(74, 14, 23, 0.06);
+        }
+
+        .modal-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-info-container {
+            flex: 1;
+            padding: 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .modal-meta-box {
+            margin: 20px 0 35px 0;
+            border-top: 1px solid rgba(74, 14, 23, 0.08);
+            border-bottom: 1px solid rgba(74, 14, 23, 0.08);
+            padding: 20px 0;
+        }
+
+        .modal-action-btn {
+            display: inline-block;
+            background-color: var(--color-temple-maroon);
+            color: var(--color-sandal);
+            padding: 14px 28px;
+            text-align: center;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            border: 1px solid var(--color-temple-maroon);
+            transition: var(--transition);
+        }
+
+        .modal-action-btn:hover {
+            background-color: transparent;
+            color: var(--color-temple-maroon);
+        }
+
+        /* --- FOOTER BLOCK --- */
+        footer {
+            background-color: var(--color-temple-maroon);
+            color: rgba(253, 251, 247, 0.7);
+            padding: 5rem 0 3rem 0;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--color-antique-gold);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(2, 1fr) 1.5fr;
+            gap: 50px;
+            margin-bottom: 4rem;
+        }
+
+        .footer-title {
+            color: var(--color-sandal);
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 12px; }
+        .footer-links a:hover { color: var(--color-antique-gold); padding-left: 5px; }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(253, 251, 247, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 1024px) {
+            .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .modal-body { flex-direction: column; }
+            .modal-img-container { max-width: 100%; }
+            .modal-info-container { padding: 30px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY NAVIGATION HEADER -->
+    <header>
+        <div class="container nav-container">
+            <a href="index.html" class="logo-text">
+                NITHYA
+                <span>Handcraft</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="shop.html" class="active">The Treasury</a></li>
+                    <li><a href="index.html#custom-section">Custom Orders</a></li>
+                </ul>
+            </nav>
+            <div style="font-size: 0.9rem; display: flex; gap: 20px;">
+                <span>🔍</span><span>🛒</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- SHOP BANNER -->
+    <section class="page-header">
+        <div class="container">
+            <h1>The Complete Treasury</h1>
+            <p>Explore our architectural catalog of custom masterworks, built meticulously to endure through generations.</p>
+        </div>
+    </section>
+
+    <!-- LIVE FILTER TABS (Assigned Distinct DOM Identification IDs) -->
+    <div class="container">
+        <div class="filter-container">
+            <button class="filter-btn active" id="btn-all" onclick="filterGallery('all')">View All</button>
+            <button class="filter-btn" id="btn-jewellery" onclick="filterGallery('jewellery')">Jewellery</button>
+            <button class="filter-btn" id="btn-accessories" onclick="filterGallery('accessories')">Hair Accents</button>
+            <button class="filter-btn" id="btn-quilling" onclick="filterGallery('quilling')">Quilling Studio</button>
+        </div>
+
+        <!-- PUBLIC GENERATED PRODUCT DISPLAY GRID -->
+        <div class="gallery-grid" id="gallery-container"></div>
+    </div>
+
+    <!-- PRODUCT EXPANSION VIEW MODAL -->
+    <div id="productDetailModal" class="modal-overlay" onclick="closeProductModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="closeProductModal()">✕</button>
+            <div class="modal-body">
+                <div class="modal-img-container">
+                    <img id="mImgTarget" src="" alt="Studio Asset Target View">
+                </div>
+                <div class="modal-info-container">
+                    <span id="mTagTarget" class="item-tag">Collection</span>
+                    <h2 id="mTitleTarget" class="item-name" style="font-size: 1.75rem; margin-bottom: 12px; font-weight: 600;">Product Title</h2>
+                    
+                    <div class="modal-meta-box">
+                        <p style="font-size: 0.9rem; color: var(--color-text-dark); font-weight: 500;">
+                            Scale Configuration: <span id="mSizeTarget" style="font-weight: 400; opacity: 0.85;">Standard Matrix</span>
+                        </p>
+                        <p style="margin-top: 15px; font-size: 0.85rem; opacity: 0.8; line-height: 1.6; font-style: italic;">
+                            Every acquisition is meticulously hand-formed at order intervals. Because structural integrity requires precise alignment layouts, subtle unique variation profiles are signature tokens of pure authentic craft.
+                        </p>
+                    </div>
+                    
+                    <a href="index.html#intake-form" class="modal-action-btn">Inquire / Request Customization</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER BLOCK -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="logo-text" style="color: var(--color-sandal);">NITHYA<span style="color: var(--color-antique-gold);">Handcraft</span></div>
+                <p style="margin-top: 15px;">Curating 100% genuine handmade structural accessories, jewelry, and delicate paper art creations designed to endure.</p>
+            </div>
+            <div>
+                <h4 class="footer-title">Boutique</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html#collections-section">Collections</a></li>
+                    <li><a href="shop.html">The Treasury</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Inquiries</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Care Guidelines</a></li>
+                    <li><a href="index.html#intake-form">Custom Requests</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Studio Journey</h4>
+                <p>Follow along behind the scenes updates:</p>
+                <a href="https://www.instagram.com/nithya.handcraft" target="_blank" style="color: var(--color-antique-gold); font-weight:500;">@nithya.handcraft</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Nithya Handcraft. All Rights Reserved.</p>
+            <p>Designed for Luxury Tamil Artisanship</p>
+        </div>
+    </footer>
+
+    <!-- PIPELINE ROUTER AND CROSS-PAGE INTERACTION INTELLIGENCE SCRIPT -->
+    <script>
+        const fallbackItems = [
+            { src: 'earrings.jpg.jpeg', category: 'jewellery', title: 'Traditional Filigree Earrings', size: 'Standard Set', tag: 'Jewellery' },
+            { src: 'bracelets.jpg.jpeg', category: 'jewellery', title: 'Handcrafted Festive Bracelet', size: '7.5cm Circumference', tag: 'Jewellery' },
+            { src: 'chain.jpg.jpeg', category: 'jewellery', title: 'Elegant Antique Chain', size: '24 Inch Length', tag: 'Jewellery' },
+            { src: 'hairbands.jpg.jpeg', category: 'accessories', title: 'Elegant Hairband Accent', size: 'Standard Base', tag: 'Hair Accents' },
+            { src: 'hairclips.jpg.jpeg', category: 'accessories', title: 'Traditional Blossom Clips', size: '5cm / 7cm Clips', tag: 'Hair Accents' },
+            { src: 'quilling.jpg.jpeg', category: 'quilling', title: 'Intricate Paper Filigree Mandala', size: 'A4 Display Frame', tag: 'Quilling Studio' },
+            { src: 'upins.jpg.jpeg', category: 'accessories', title: 'Bespoke Muhurtham U-Pins', size: 'Set of 6', tag: 'Hair Accents' }
+        ];
+
+        let products = JSON.parse(localStorage.getItem('nithya_inventory'));
+        if (!products) {
+            products = fallbackItems;
+            localStorage.setItem('nithya_inventory', JSON.stringify(products));
+        }
+
+        const container = document.getElementById('gallery-container');
+        let activeCategory = 'all';
+
+        function displayProducts() {
+            container.innerHTML = ''; 
+            products.forEach((item, index) => {
+                if (activeCategory === 'all' || item.category === activeCategory) {
+                    const cardHtml = `
+                        <div class="gallery-item" onclick="launchProductModal(${index})">
+                            <div class="img-box">
+                                <img src="Image/${item.src}" alt="${item.title}" onerror="this.src='https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=300'">
+                            </div>
+                            <div class="item-details">
+                                <span class="item-tag">${item.tag}</span>
+                                <span class="item-size">Size: ${item.size}</span>
+                                <h3 class="item-name">${item.title}</h3>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += cardHtml;
+                }
+            });
+        }
+
+        function launchProductModal(index) {
+            const targetItem = products[index];
+            document.getElementById('mImgTarget').src = 'Image/' + targetItem.src;
+            document.getElementById('mTagTarget').innerText = targetItem.tag;
+            document.getElementById('mTitleTarget').innerText = targetItem.title;
+            document.getElementById('mSizeTarget').innerText = targetItem.size;
+            
+            const modalOverlay = document.getElementById('productDetailModal');
+            modalOverlay.style.display = 'flex';
+            setTimeout(() => { modalOverlay.classList.add('active'); }, 10);
+        }
+
+        function closeProductModal() {
+            const modalOverlay = document.getElementById('productDetailModal');
+            modalOverlay.classList.remove('active');
+            setTimeout(() => { modalOverlay.style.display = 'none'; }, 400);
+        }
+
+        function filterGallery(category) {
+            activeCategory = category;
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Handle edge safety check when filtering is driven via direct URL parameter onboot
+            const targetBtn = document.getElementById('btn-' + category);
+            if (targetBtn) {
+                targetBtn.classList.add('active');
+            }
+            displayProducts();
+        }
+
+        /* 
+           CROSS-PAGE INTERACTIVE INTELLIGENCE:
+           Scans the inbound URL parameters on layout boot execution.
+           If a '?filter=' query is detected, it intercepts the active display parameters automatically.
+        */
+        function initializeEcosystemRouting() {
+            const URLParameters = new URLSearchParams(window.location.search);
+            const activeFilterQuery = URLParameters.get('filter');
+            
+            if (activeFilterQuery && ['jewellery', 'accessories', 'quilling'].includes(activeFilterQuery)) {
+                activeCategory = activeFilterQuery;
+            }
+            filterGallery(activeCategory);
+        }
+
+        // Trigger dynamic entry analysis loop
+        initializeEcosystemRouting();
+    </script>
+</body>
+</html>

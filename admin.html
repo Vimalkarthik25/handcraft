@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nithya Handcraft | Artisan Inventory Studio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- BRAND PALETTE (TAMIL TRADITIONAL LUXURY WORKSPACE) --- */
+        :root {
+            --color-sandal: #fdfbf7;
+            --color-temple-maroon: #4a0e17;
+            --color-antique-gold: #d4a343;
+            --color-text-dark: #2b181b;
+            --color-white: #ffffff;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-sandal);
+            color: var(--color-text-dark);
+            padding: 40px 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* --- DASHBOARD HEADER --- */
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--color-temple-maroon);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .dashboard-header h1 {
+            font-family: var(--font-serif);
+            color: var(--color-temple-maroon);
+            font-size: 2.2rem;
+            font-weight: 600;
+        }
+
+        .view-live-btn {
+            background-color: transparent;
+            color: var(--color-temple-maroon);
+            border: 1px solid var(--color-temple-maroon);
+            padding: 10px 20px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .view-live-btn:hover {
+            background-color: var(--color-temple-maroon);
+            color: var(--color-sandal);
+        }
+
+        /* --- INTAKE FORM BLOCK --- */
+        .form-panel {
+            background-color: var(--color-white);
+            border: 1px solid rgba(74, 14, 23, 0.1);
+            padding: 40px;
+            box-shadow: 0 4px 25px rgba(74, 14, 23, 0.02);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .form-panel.edit-mode {
+            border: 1px solid var(--color-antique-gold);
+            background-color: rgba(212, 163, 67, 0.01);
+        }
+
+        .panel-title {
+            font-family: var(--font-serif);
+            color: var(--color-temple-maroon);
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--color-temple-maroon);
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid rgba(74, 14, 23, 0.2);
+            background-color: var(--color-sandal);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--color-text-dark);
+            transition: var(--transition);
+        }
+
+        /* Specialized Styling for Native Browsing Element Wrapper */
+        .file-browser-input {
+            padding: 10px !important;
+            background-color: var(--color-white) !important;
+            cursor: pointer;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--color-antique-gold);
+            background-color: var(--color-white);
+        }
+
+        .action-row {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .submit-btn {
+            background-color: var(--color-temple-maroon);
+            color: var(--color-sandal);
+            border: none;
+            padding: 15px 35px;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            background-color: var(--color-antique-gold);
+            color: var(--color-temple-maroon);
+        }
+
+        .cancel-btn {
+            background-color: transparent;
+            color: #7f8c8d;
+            border: 1px solid #bdc3c7;
+            padding: 15px 25px;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .cancel-btn:hover {
+            background-color: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+
+        /* --- TABLE RECORD SHEETS --- */
+        .inventory-panel h2 {
+            font-family: var(--font-serif);
+            color: var(--color-temple-maroon);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            background-color: var(--color-white);
+            border: 1px solid rgba(74, 14, 23, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: var(--color-temple-maroon);
+            color: var(--color-sandal);
+            padding: 15px 20px;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(74, 14, 23, 0.05);
+            vertical-align: middle;
+        }
+
+        tr:hover td {
+            background-color: rgba(253, 251, 247, 0.5);
+        }
+
+        .thumb-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border: 1px solid rgba(74, 14, 23, 0.1);
+            background-color: var(--color-sandal);
+        }
+
+        .tag-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background-color: rgba(212, 163, 67, 0.15);
+            color: #875e07;
+            font-weight: 500;
+        }
+
+        /* Action Column Management Typography Filters */
+        .action-container {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .edit-link {
+            color: #2980b9;
+            cursor: pointer;
+            font-weight: 600;
+            background: none;
+            border: none;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .edit-link:hover {
+            text-decoration: underline;
+            color: #3498db;
+        }
+
+        .remove-link {
+            color: #c0392b;
+            cursor: pointer;
+            font-weight: 600;
+            background: none;
+            border: none;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .remove-link:hover {
+            text-decoration: underline;
+            color: #e74c3c;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid { grid-template-columns: 1fr; gap: 15px; }
+            .dashboard-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .form-panel { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- HEADER ROW -->
+        <header class="dashboard-header">
+            <div>
+                <h1>Nithya Handcraft</h1>
+                <p style="font-size: 0.85rem; opacity: 0.7; margin-top: 3px;">Artisan Inventory & Catalog Database Management Panel</p>
+            </div>
+            <a href="shop.html" target="_blank" class="view-live-btn">👁️ Preview Live Shop</a>
+        </header>
+
+        <!-- CONFIGURATION PANEL INPUT FORM -->
+        <section class="form-panel" id="formPanel">
+            <h2 class="panel-title" id="panelHeading"><span>✨</span> Document New Design Layout</h2>
+            <form id="inventoryForm" onsubmit="handleFormSubmit(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Product Presentation Title</label>
+                        <input type="text" id="pTitle" placeholder="e.g., Traditional Blossom Jhumkas" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Collection Stream</label>
+                        <select id="pCategory" required>
+                            <option value="jewellery">Jewellery</option>
+                            <option value="accessories">Hair Accents</option>
+                            <option value="quilling">Quilling Studio</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Structural Scale / Size Configurations</label>
+                        <input type="text" id="pSize" placeholder="e.g., 4.5cm / 7.5cm / Custom Framed Layout" required>
+                    </div>
+                    
+                    <!-- REPLACED: Verbatim typing converted into a beautiful System File Picker browser option -->
+                    <div class="form-group">
+                        <label id="fileInputLabel">Select Reference Image File</label>
+                        <input type="file" id="pFileInput" class="file-browser-input" accept="image/*" onchange="captureFilename(event)">
+                        <span id="fileTrackingLog" style="font-size:0.8rem; color:var(--color-antique-gold); font-weight:500; display:block; margin-top:6px; font-family:monospace;"></span>
+                    </div>
+                </div>
+                
+                <div class="action-row">
+                    <button type="button" class="cancel-btn" id="cancelEditBtn" style="display:none;" onclick="abortEditMode()">Cancel Edit</button>
+                    <button type="submit" class="submit-btn" id="formSubmitBtn">Add to Live Treasury</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- LIVE DATABASE INVENTORY LIST MATRIX -->
+        <section class="inventory-panel">
+            <h2>Current Repository Matrix</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Preview Thumbnail</th>
+                            <th>Design Title</th>
+                            <th>Collection Stream</th>
+                            <th>Size Details</th>
+                            <th>Target Reference Filename</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventoryTableBody">
+                        <!-- Dynamic content items update automatically inside local runtime cache memory -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <!-- SYNCHRONIZATION BACKEND CONTROLLER SYSTEM -->
+    <script>
+        const fallbackItems = [
+            { src: 'earrings.jpg.jpeg', category: 'jewellery', title: 'Traditional Filigree Earrings', size: 'Standard Set', tag: 'Jewellery' },
+            { src: 'bracelets.jpg.jpeg', category: 'jewellery', title: 'Handcrafted Festive Bracelet', size: '7.5cm Circumference', tag: 'Jewellery' },
+            { src: 'chain.jpg.jpeg', category: 'jewellery', title: 'Elegant Antique Chain', size: '24 Inch Length', tag: 'Jewellery' },
+            { src: 'hairbands.jpg.jpeg', category: 'accessories', title: 'Elegant Hairband Accent', size: 'Standard Base', tag: 'Hair Accents' },
+            { src: 'hairclips.jpg.jpeg', category: 'accessories', title: 'Traditional Blossom Clips', size: '5cm / 7cm Clips', tag: 'Hair Accents' },
+            { src: 'quilling.jpg.jpeg', category: 'quilling', title: 'Intricate Paper Filigree Mandala', size: 'A4 Display Frame', tag: 'Quilling Studio' },
+            { src: 'upins.jpg.jpeg', category: 'accessories', title: 'Bespoke Muhurtham U-Pins', size: 'Set of 6', tag: 'Hair Accents' }
+        ];
+
+        let coreInventory = JSON.parse(localStorage.getItem('nithya_inventory'));
+        if (!coreInventory) {
+            coreInventory = fallbackItems;
+            localStorage.setItem('nithya_inventory', JSON.stringify(coreInventory));
+        }
+
+        const tableBody = document.getElementById('inventoryTableBody');
+        const trackingLog = document.getElementById('fileTrackingLog');
+        
+        // State variables to manage editing modes smoothly
+        let globalSelectedFilename = "";
+        let editTargetIndex = -1; 
+
+        // Extract native system file metadata object configuration safely
+        function captureFilename(event) {
+            if(event.target.files.length > 0) {
+                globalSelectedFilename = event.target.files[0].name;
+                trackingLog.innerText = "Selected: " + globalSelectedFilename;
+            }
+        }
+
+        // Render table content layouts with edit tracking links integrated
+        function syncTable() {
+            tableBody.innerHTML = '';
+            
+            coreInventory.forEach((item, idx) => {
+                const rowHtml = `
+                    <tr>
+                        <td>
+                            <img src="Image/${item.src}" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=100'">
+                        </td>
+                        <td style="font-weight: 500; color: var(--color-temple-maroon);">${item.title}</td>
+                        <td><span class="tag-badge">${item.tag}</span></td>
+                        <td style="font-size:0.85rem; opacity:0.8;">${item.size}</td>
+                        <td style="font-family:monospace; font-size:0.8rem; opacity:0.7;">${item.src}</td>
+                        <td>
+                            <div class="action-container">
+                                <button class="edit-link" onclick="triggerEditMode(${idx})">Edit</button>
+                                <button class="remove-link" onclick="purgeItem(${idx})">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += rowHtml;
+            });
+        }
+
+        // Handle consolidated workflow logic rules based on current status
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const title = document.getElementById('pTitle').value;
+            const category = document.getElementById('pCategory').value;
+            const size = document.getElementById('pSize').value;
+
+            // In edit configuration, preserve the previous file asset reference if no new item is chosen
+            if (editTargetIndex !== -1 && globalSelectedFilename === "") {
+                globalSelectedFilename = coreInventory[editTargetIndex].src;
+            }
+
+            if (globalSelectedFilename === "") {
+                alert("Please browse and select a design layout photo from your file system.");
+                return;
+            }
+
+            let computedTag = 'Jewellery';
+            if (category === 'accessories') computedTag = 'Hair Accents';
+            if (category === 'quilling') computedTag = 'Quilling Studio';
+
+            const payload = {
+                src: globalSelectedFilename,
+                category: category,
+                title: title,
+                size: size,
+                tag: computedTag
+            };
+
+            if (editTargetIndex === -1) {
+                // ADD MODE: Insert clean tracking entry
+                coreInventory.push(payload);
+            } else {
+                // EDIT MODE: Overwrite data map configurations safely at explicit row index
+                coreInventory[editTargetIndex] = payload;
+            }
+
+            localStorage.setItem('nithya_inventory', JSON.stringify(coreInventory));
+            abortEditMode();
+            syncTable();
+        }
+
+        // Pull row items configurations back up to form panel to modify
+        function triggerEditMode(index) {
+            editTargetIndex = index;
+            const item = coreInventory[index];
+
+            // Adjust input UI text values maps
+            document.getElementById('pTitle').value = item.title;
+            document.getElementById('pCategory').value = item.category;
+            document.getElementById('pSize').value = item.size;
+            
+            // Retain absolute track visibility of original file target asset context
+            globalSelectedFilename = item.src;
+            trackingLog.innerText = "Current Registered File: " + item.src;
+            document.getElementById('fileInputLabel').innerText = "Change Selected Image (Optional)";
+            document.getElementById('pFileInput').required = false;
+
+            // Flip UI Panel theme aesthetics over to Gold context indicators
+            document.getElementById('formPanel').classList.add('edit-mode');
+            document.getElementById('panelHeading').innerHTML = "<span>🛠️</span> Edit Existing Studio Creation Context";
+            document.getElementById('formSubmitBtn').innerText = "Update Live Treasury";
+            document.getElementById('cancelEditBtn').style.display = "inline-block";
+
+            // Smooth slide viewport window back to the top form focus matrix context smoothly
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Terminate active context structures, scrub files inputs completely clear
+        function abortEditMode() {
+            editTargetIndex = -1;
+            globalSelectedFilename = "";
+            
+            document.getElementById('inventoryForm').reset();
+            trackingLog.innerText = "";
+            document.getElementById('fileInputLabel').innerText = "Select Reference Image File";
+            document.getElementById('pFileInput').required = false;
+
+            document.getElementById('formPanel').classList.remove('edit-mode');
+            document.getElementById('panelHeading').innerHTML = "<span>✨</span> Document New Design Layout";
+            document.getElementById('formSubmitBtn').innerText = "Add to Live Treasury";
+            document.getElementById('cancelEditBtn').style.display = "none";
+        }
+
+        // Delete confirmation logic loop rules
+        function purgeItem(targetIndex) {
+            // Force exit state variables maps clear if target row context is currently being active edited
+            if(editTargetIndex === targetIndex) {
+                abortEditMode();
+            }
+
+            if(confirm("Confirm removal of this piece from your database? This immediately unlinks it from the live shop site.")) {
+                coreInventory.splice(targetIndex, 1);
+                localStorage.setItem('nithya_inventory', JSON.stringify(coreInventory));
+                syncTable();
+            }
+        }
+
+        syncTable();
+    </script>
+</body>
+</html>

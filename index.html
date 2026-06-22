@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nithya Handcraft | Tamil Traditional Luxury Accessories</title>
+    <!-- Elegant Fonts for Traditional Heritage Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- BRAND PALETTE (TAMIL TRADITIONAL LUXURY) --- */
+        :root {
+            --color-sandal: #fdfbf7;
+            --color-temple-maroon: #4a0e17;
+            --color-antique-gold: #d4a343;
+            --color-text-dark: #2b181b;
+            --color-white: #ffffff;
+            --font-serif: 'Playfair Display', Georgia, serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --transition: all 0.4s ease;
+        }
+
+        /* --- BASE STYLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--color-sandal);
+            color: var(--color-text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--color-temple-maroon);
+            color: var(--color-sandal);
+            border: 1px solid var(--color-temple-maroon);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            border-color: var(--color-temple-maroon);
+            color: var(--color-temple-maroon);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--color-temple-maroon);
+            color: var(--color-temple-maroon);
+            background-color: transparent;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-temple-maroon);
+            color: var(--color-sandal);
+        }
+
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            font-weight: 400;
+            text-align: center;
+            color: var(--color-temple-maroon);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 0.95rem;
+            opacity: 0.8;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            font-style: italic;
+        }
+
+        /* --- NAVIGATION --- */
+        header {
+            background-color: rgba(253, 251, 247, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(74, 14, 23, 0.08);
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo-text {
+            font-family: var(--font-serif);
+            font-size: 1.6rem;
+            letter-spacing: 1px;
+            color: var(--color-temple-maroon);
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        .logo-text span {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            display: block;
+            letter-spacing: 3px;
+            font-weight: 300;
+            text-transform: uppercase;
+            margin-top: -2px;
+            color: var(--color-antique-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 400;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-antique-gold);
+        }
+
+        /* --- HERO PANEL --- */
+        .hero {
+            position: relative;
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(74, 14, 23, 0.55), rgba(74, 14, 23, 0.35)), 
+                        url('Image/chain.jpg.jpeg') center/cover no-repeat;
+            color: var(--color-sandal);
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-serif);
+            font-size: 3.8rem;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin-bottom: 35px;
+            opacity: 0.9;
+        }
+
+        .hero .btn {
+            background-color: var(--color-antique-gold);
+            color: var(--color-temple-maroon);
+            font-weight: 500;
+        }
+
+        .hero .btn:hover {
+            background-color: transparent;
+            border-color: var(--color-sandal);
+            color: var(--color-sandal);
+        }
+
+        /* --- COLLECTIONS GRID --- */
+        .collections {
+            padding: 8rem 0 4rem 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .collection-card {
+            position: relative;
+            overflow: hidden;
+            height: 500px;
+            box-shadow: 0 10px 30px rgba(74, 14, 23, 0.03);
+            border: 1px solid rgba(74, 14, 23, 0.05);
+        }
+
+        .collection-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .collection-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(74, 14, 23, 0.9) 10%, rgba(74, 14, 23, 0.2) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            transition: var(--transition);
+        }
+
+        .collection-overlay h3 {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            color: var(--color-sandal);
+            margin-bottom: 10px;
+            font-weight: 400;
+        }
+
+        .collection-overlay span {
+            color: var(--color-antique-gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .collection-card:hover .collection-img {
+            transform: scale(1.05);
+        }
+
+        /* --- THE ARTISAN PROMISE --- */
+        .promise {
+            background-color: var(--color-temple-maroon);
+            color: var(--color-sandal);
+            padding: 6rem 0;
+            text-align: center;
+            border-top: 3px solid var(--color-antique-gold);
+            border-bottom: 3px solid var(--color-antique-gold);
+        }
+
+        .promise-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .promise blockquote {
+            font-family: var(--font-serif);
+            font-size: 1.8rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .promise p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--color-antique-gold);
+        }
+
+        /* --- FEATURED PRODUCTS --- */
+        .featured {
+            padding: 8rem 0 4rem 0;
+        }
+
+        .catalog-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background-color: var(--color-white);
+            border: 1px solid rgba(74, 14, 23, 0.03);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-shadow: 0 4px 15px rgba(74, 14, 23, 0.01);
+        }
+
+        .product-img-container {
+            overflow: hidden;
+            position: relative;
+            height: 320px;
+            background-color: #faf8f5;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover img {
+            transform: scale(1.03);
+        }
+
+        .product-info {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--color-antique-gold);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .product-title {
+            font-family: var(--font-serif);
+            font-size: 1.15rem;
+            color: var(--color-temple-maroon);
+            font-weight: 400;
+        }
+
+        /* --- CUSTOM COMMISSIONS BANNER --- */
+        .custom-orders {
+            display: flex;
+            background-color: var(--color-white);
+            min-height: 550px;
+            margin-bottom: 2rem;
+            border-top: 1px solid rgba(74, 14, 23, 0.05);
+        }
+
+        .custom-img {
+            flex: 1;
+            background: url('Image/chain.jpg.jpeg') center/cover no-repeat;
+        }
+
+        .custom-text {
+            flex: 1;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            background-color: #f6f2eb;
+        }
+
+        .custom-text h2 {
+            font-family: var(--font-serif);
+            font-size: 2.5rem;
+            color: var(--color-temple-maroon);
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .custom-text p {
+            margin-bottom: 35px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* --- BESPOKE INTAKE FORM --- */
+        .intake-form-section {
+            padding: 4rem 0 6rem 0;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .brand-form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            background-color: var(--color-white);
+            padding: 45px;
+            border: 1px solid rgba(74, 14, 23, 0.05);
+            box-shadow: 0 15px 40px rgba(74, 14, 23, 0.02);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid rgba(74, 14, 23, 0.15);
+            background: transparent;
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            color: var(--color-text-dark);
+            transition: var(--transition);
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--color-antique-gold);
+            background-color: rgba(253, 251, 247, 0.6);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--color-temple-maroon);
+            color: rgba(253, 251, 247, 0.7);
+            padding: 5rem 0 3rem 0;
+            font-size: 0.9rem;
+            border-top: 3px solid var(--color-antique-gold);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(2, 1fr) 1.5fr;
+            gap: 50px;
+            margin-bottom: 4rem;
+        }
+
+        .footer-brand .logo-text {
+            color: var(--color-sandal);
+            margin-bottom: 20px;
+        }
+
+        .footer-title {
+            color: var(--color-sandal);
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-antique-gold);
+            padding-left: 5px;
+        }
+
+        .instagram-tag {
+            font-size: 1rem;
+            color: var(--color-antique-gold);
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(253, 251, 247, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* --- RESPONSIVENESS --- */
+        @media (max-width: 992px) {
+            .grid-3, .catalog-grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .custom-orders { flex-direction: column; }
+            .custom-img { height: 350px; }
+            .custom-text { padding: 40px; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; } 
+            .grid-3, .catalog-grid-4 { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .brand-form { padding: 25px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- STICKY HEADER NAV -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo-text">
+                NITHYA
+                <span>Handcraft</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="shop.html">The Treasury</a></li>
+                    <li><a href="#custom-section">Custom Orders</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons" style="display:flex; gap:20px;">
+                <span>🔍</span>
+                <span>🛒</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO PANEL -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Meticulously Crafted.<br>Timelessly Elegant.</h1>
+            <p>Premium handmade jewelry, festive hair accessories, and bespoke filigree art inspired by rich Tamil traditional aesthetics.</p>
+            <a href="#collections-section" class="btn">Explore Collections</a>
+        </div>
+    </section>
+
+    <!-- COLLECTIONS CATEGORY SECTION (Updated with Smart Filtering parameter tags!) -->
+    <section id="collections-section" class="collections container">
+        <h2 class="section-title">The Collections</h2>
+        <p class="section-subtitle">Browse through our curated lines of handmade luxury, balancing pristine structural stability with intricate cultural detail.</p>
+        <div class="grid-3">
+            <!-- Jewelry URL Trigger -->
+            <a href="shop.html?filter=jewellery" class="collection-card">
+                <img src="Image/earrings.jpg.jpeg" alt="Handcrafted Jewellery" class="collection-img">
+                <div class="collection-overlay">
+                    <span>Aesthetic Ornaments</span>
+                    <h3>Handcrafted Jewellery</h3>
+                </div>
+            </a>
+            <!-- Hair Accents URL Trigger -->
+            <a href="shop.html?filter=accessories" class="collection-card">
+                <img src="Image/hairbands.jpg.jpeg" alt="Premium Hair Accessories" class="collection-img">
+                <div class="collection-overlay">
+                    <span>Muhurtham & Festive Accents</span>
+                    <h3>Hair Accessories</h3>
+                </div>
+            </a>
+            <!-- Quilling Studio URL Trigger -->
+            <a href="shop.html?filter=quilling" class="collection-card">
+                <img src="Image/quilling.jpg.jpeg" alt="Intricate Quilling Art" class="collection-img">
+                <div class="collection-overlay">
+                    <span>Kolam Paper Filigree</span>
+                    <h3>Quilling Art</h3>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- THE ARTISAN PROMISE STATEMENT -->
+    <section class="promise">
+        <div class="container promise-content">
+            <blockquote>"Every creation reflects a singular story. Because everything we form is 100% handmade, no two elements are ever entirely identical. We treat each layout as a piece of wearable heritage."</blockquote>
+            <p>The Nithya Handcraft Commitment</p>
+        </div>
+    </section>
+
+    <!-- 8-ITEM PRODUCT GRID CATALOG -->
+    <section id="featured-products" class="featured container">
+        <h2 class="section-title">Featured Creations</h2>
+        <p class="section-subtitle">Explore a preview of our premium studio designs featuring custom wiring configurations and flawless structural assembly.</p>
+        
+        <div class="catalog-grid-4">
+            <!-- Item 1: Earrings -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="Image/earrings.jpg.jpeg" alt="Filigree Earrings">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Jewellery</span>
+                    <h3 class="product-title">Artisan Statement Earrings</h3>
+                </div>
+            </div>
+
+            <!-- Item 2: Bracelets -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="Image/bracelets.jpg.jpeg" alt="Custom Beaded Bracelet">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Jewellery</span>
+                    <h3 class="product-title">Custom Beaded Bracelet</h3>
+                </div>
+            </div>
+
+            <!-- Item 3: Chain -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="Image/chain.jpg.jpeg" alt="Elegant Neck Chain">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Jewellery</span>
+                    <h3 class="product-title">Luxury Minimalist Chain</h3>
+                </div>
+            </div>
+
+            <!-- Item 4: Hairbands -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="Image/hairbands.jpg.jpeg" alt="Premium Hairband">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Accessories</span>
+                    <h3 class="product-title">Botanical Accent Hairband</h3>
+                </div>
+            </div>
+
+            <!-- Item 5: Hairclips -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="Image/hairclips.jpg.jpeg" alt="Artisan Hairclips">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Accessories</span>
+                    <h3 class="product-title">Luxury Statement Hairclips</h3>
+                </div>
+            </div>
+
+            <!-- Item 6: Quilling Art -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="Image/quilling.jpg.jpeg" alt="Intricate Quilling Canvas">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Quilling Art</span>
+                    <h3 class="product-title">Coiled Paper Filigree Mandala</h3>
+                </div>
+            </div>
+
+            <!-- Item 7: Upins -->
+            <div class="product-card">
+                <div class="product-img-container">
+                    <img src="Image/upins.jpg.jpeg" alt="Delicate Bridal U-pins">
+                </div>
+                <div class="product-info">
+                    <span class="product-category">Accessories</span>
+                    <h3 class="product-title">Bespoke Bridal U-Pins</h3>
+                </div>
+            </div>
+
+            <!-- Item 8: Interactive Custom Commission Box -->
+            <div class="product-card" style="border: 1px dashed var(--color-antique-gold); background-color: rgba(212,163,67,0.02); display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 30px;">
+                <div style="text-align: center;">
+                    <span style="font-size: 1.8rem; display: block; margin-bottom: 10px;">✨</span>
+                    <h3 class="product-title" style="margin-bottom: 10px; font-family: var(--font-serif); color: var(--color-temple-maroon);">Bespoke Orders</h3>
+                    <p style="font-size: 0.8rem; opacity: 0.8; margin-bottom: 25px; line-height: 1.4; max-width: 200px; margin-left: auto; margin-right: auto;">Need specific colors, custom bead structures, or special formats built?</p>
+                    <a href="#intake-form" class="btn btn-outline" style="padding: 10px 22px; font-size: 0.75rem;">Request Work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CUSTOM COMMISSIONS BANNER CALLOUT -->
+    <section id="custom-section" class="custom-orders">
+        <div class="custom-img"></div>
+        <div class="custom-text">
+            <h2>Bespoke Orders For Special Moments</h2>
+            <p>From custom matching to festive configurations, we work closely alongside you to construct items fitted to your distinct aesthetic layout preferences.</p>
+            <a href="#intake-form" class="btn btn-primary">Request Custom Work</a>
+        </div>
+    </section>
+
+    <!-- PRODUCTION-READY BESPOKE EMAIL INTAKE FORM (Formspree Integration Ready) -->
+    <section id="intake-form" class="container intake-form-section">
+        <h2 class="section-title">Bespoke Request Form</h2>
+        <p class="section-subtitle" style="margin-bottom: 2.5rem;">Let us bring your vision to life. Fill out the configuration details below to initiate a custom layout design consultation.</p>
+        
+        <!-- 
+            ACTION TO ROUTE INQUIRIES STRAIGHT TO YOUR EMAIL:
+            1. Go to https://formspree.io and create a free account.
+            2. Create a new form called "Nithya Handcraft Inquiries".
+            3. Copy the unique URL they give you, replace the action path below, and remove the placeholder code!
+        -->
+        <form class="brand-form" action="https://formspree.io/f/PLACEHOLDER_ID" method="POST">
+            
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; color: var(--color-temple-maroon);">Full Name</label>
+                <input type="text" name="Client Name" placeholder="Your Full Name" class="form-input" required>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; color: var(--color-temple-maroon);">Email Address</label>
+                <input type="email" name="Reply-To Email" placeholder="Email Address" class="form-input" required>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; color: var(--color-temple-maroon);">Commission Category</label>
+                <select name="Requested Category" class="form-select" style="width:100%; padding:16px; border:1px solid rgba(74,14,23,0.15); background:transparent; font-family:var(--font-sans);" required>
+                    <option value="" disabled selected>Select Commission Category</option>
+                    <option value="Custom Jewellery Arrangement">Custom Jewellery Arrangement</option>
+                    <option value="Hair Accessory / Bridal Set">Hair Accessory / Bridal Set</option>
+                    <option value="Bespoke Quilling Art Canvas">Bespoke Quilling Art Canvas</option>
+                </select>
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; color: var(--color-temple-maroon);">Design Requirements & Parameters</label>
+                <textarea name="Design Specifications" placeholder="Please describe your desired design parameters, bead counts, structural sizes, or custom color palettes..." rows="6" class="form-textarea" required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary" style="width: 100%; margin-top:10px;">Submit Consultation Request</button>
+        </form>
+    </section>
+
+    <!-- FOOTER BLOCK -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="logo-text" style="color: var(--color-sandal);">NITHYA<span style="color: var(--color-antique-gold);">Handcraft</span></div>
+                <p style="margin-top: 15px;">Curating 100% genuine handmade accessories, jewelry, and delicate paper filigree art designed to endure.</p>
+            </div>
+            <div>
+                <h4 class="footer-title">Boutique</h4>
+                <ul class="footer-links">
+                    <li><a href="#collections-section">Collections</a></li>
+                    <li><a href="shop.html">The Treasury</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Inquiries</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Care Guidelines</a></li>
+                    <li><a href="#intake-form">Custom Requests</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="footer-title">Studio Journey</h4>
+                <p>Follow along behind the scenes for custom client assembly previews and video updates:</p>
+                <a href="https://www.instagram.com/nithya.handcraft" target="_blank" class="instagram-tag">@nithya.handcraft</a>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Nithya Handcraft. All Rights Reserved.</p>
+            <p>Designed for Luxury Artisanship</p>
+        </div>
+    </footer>
+
+</body>
+</html>
