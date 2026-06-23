@@ -194,7 +194,6 @@
             font-weight: 400;
             line-height: 1.2;
             margin-bottom: 20px;
-            animation: fadeInDown 1s ease;
         }
 
         .hero p {
@@ -537,9 +536,10 @@
                     <li><a href="#custom-section">Custom Orders</a></li>
                 </ul>
             </nav>
-            <div class="nav-icons" style="display:flex; gap:20px;">
-                <span>🔍</span>
-                <span>🛒</span>
+            <!-- UPDATED: Connected placeholders to live cross-page routing paths -->
+            <div class="nav-icons" style="display: flex; gap: 20px; font-size: 1rem;">
+                <a href="shop.html?focus=search" title="Search Treasury" style="cursor: pointer;">🔍</a>
+                <a href="#intake-form" title="View Custom Intake" style="cursor: pointer;">🛒</a>
             </div>
         </div>
     </header>
@@ -553,7 +553,7 @@
         </div>
     </section>
 
-    <!-- COLLECTIONS CATEGORY SECTION (Updated with Smart Filtering parameter tags!) -->
+    <!-- COLLECTIONS CATEGORY SECTION -->
     <section id="collections-section" class="collections container">
         <h2 class="section-title">The Collections</h2>
         <p class="section-subtitle">Browse through our curated lines of handmade luxury, balancing pristine structural stability with intricate cultural detail.</p>
@@ -698,18 +698,12 @@
         </div>
     </section>
 
-    <!-- PRODUCTION-READY BESPOKE EMAIL INTAKE FORM (Formspree Integration Ready) -->
+    <!-- BESPOKE INTAKE FORM (Netlify Forms Tracking Activated) -->
     <section id="intake-form" class="container intake-form-section">
         <h2 class="section-title">Bespoke Request Form</h2>
         <p class="section-subtitle" style="margin-bottom: 2.5rem;">Let us bring your vision to life. Fill out the configuration details below to initiate a custom layout design consultation.</p>
         
-        <!-- 
-            ACTION TO ROUTE INQUIRIES STRAIGHT TO YOUR EMAIL:
-            1. Go to https://formspree.io and create a free account.
-            2. Create a new form called "Nithya Handcraft Inquiries".
-            3. Copy the unique URL they give you, replace the action path below, and remove the placeholder code!
-        -->
-        <form class="brand-form" action="https://formspree.io/f/PLACEHOLDER_ID" method="POST">
+        <form class="brand-form" data-netlify="true" name="Bespoke Studio Inquiries" method="POST">
             
             <div style="display: flex; flex-direction: column; gap: 5px;">
                 <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; color: var(--color-temple-maroon);">Full Name</label>
@@ -720,10 +714,16 @@
                 <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; color: var(--color-temple-maroon);">Email Address</label>
                 <input type="email" name="Reply-To Email" placeholder="Email Address" class="form-input" required>
             </div>
+
+            <!-- INTEGRATED DYNAMIC SHORTCUT HOOK FIELD -->
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+                <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; color: var(--color-temple-maroon);">Instagram Handle</label>
+                <input type="text" name="Instagram Handle" placeholder="e.g., nithya.handcraft (without the @ symbol)" class="form-input" required>
+            </div>
             
             <div style="display: flex; flex-direction: column; gap: 5px;">
                 <label style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 500; color: var(--color-temple-maroon);">Commission Category</label>
-                <select name="Requested Category" class="form-select" style="width:100%; padding:16px; border:1px solid rgba(74,14,23,0.15); background:transparent; font-family:var(--font-sans);" required>
+                <select name="Requested Category" class="form-select" required>
                     <option value="" disabled selected>Select Commission Category</option>
                     <option value="Custom Jewellery Arrangement">Custom Jewellery Arrangement</option>
                     <option value="Hair Accessory / Bridal Set">Hair Accessory / Bridal Set</option>

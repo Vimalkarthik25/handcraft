@@ -6,7 +6,7 @@
     <title>The Treasury | Nithya Handcraft Gallery</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2=family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
         /* --- BRAND PALETTE (TAMIL TRADITIONAL LUXURY) --- */
@@ -123,12 +123,39 @@
             margin: 0 auto;
         }
 
+        /* --- LUXURY SEARCH BAR INTERFACE --- */
+        .search-container {
+            max-width: 550px;
+            margin: 3rem auto 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 24px;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            background-color: var(--color-white);
+            border: 1px solid rgba(74, 14, 23, 0.15);
+            color: var(--color-text-dark);
+            transition: var(--transition);
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(74, 14, 23, 0.01);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-antique-gold);
+            box-shadow: 0 10px 30px rgba(74, 14, 23, 0.04);
+            background-color: var(--color-white);
+        }
+
         /* --- FILTER TABS --- */
         .filter-container {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin: 3rem 0;
+            margin: 2rem 0 4rem 0;
             flex-wrap: wrap;
         }
 
@@ -395,7 +422,8 @@
                 </ul>
             </nav>
             <div style="font-size: 0.9rem; display: flex; gap: 20px;">
-                <span>🔍</span><span>🛒</span>
+                <span style="cursor: pointer;" onclick="focusSearch()" title="Search Treasury">🔍</span>
+                <a href="index.html#intake-form" title="View Custom Intake" style="cursor: pointer;">🛒</a>
             </div>
         </div>
     </header>
@@ -408,8 +436,15 @@
         </div>
     </section>
 
-    <!-- LIVE FILTER TABS (Assigned Distinct DOM Identification IDs) -->
+    <!-- REAL-TIME INTERACTIVE ENGINE SHELL -->
     <div class="container">
+        
+        <!-- INTEGRATED INTERACTIVE SEARCH BAR -->
+        <div class="search-container">
+            <input type="text" id="shopSearchBox" class="search-input" placeholder="Search treasury... (e.g., Jhumkas, Bracelet, Framing)" oninput="handleSearchExecution(this.value)">
+        </div>
+
+        <!-- LIVE FILTER TABS -->
         <div class="filter-container">
             <button class="filter-btn active" id="btn-all" onclick="filterGallery('all')">View All</button>
             <button class="filter-btn" id="btn-jewellery" onclick="filterGallery('jewellery')">Jewellery</button>
@@ -481,8 +516,11 @@
         </div>
     </footer>
 
-    <!-- PIPELINE ROUTER AND CROSS-PAGE INTERACTION INTELLIGENCE SCRIPT -->
+    <!-- PIPELINE ROUTER AND SEARCH CORE SCRIPTS -->
     <script>
+        // =========================================================================
+        // ⚠️ ENTIRELY BULK MATCH THE INVENTORY ITEMS FROM THE ADMIN FILE RIGHT HERE
+        // =========================================================================
         const fallbackItems = [
             { src: 'earrings.jpg.jpeg', category: 'jewellery', title: 'Traditional Filigree Earrings', size: 'Standard Set', tag: 'Jewellery' },
             { src: 'bracelets.jpg.jpeg', category: 'jewellery', title: 'Handcrafted Festive Bracelet', size: '7.5cm Circumference', tag: 'Jewellery' },
@@ -500,12 +538,21 @@
         }
 
         const container = document.getElementById('gallery-container');
+        const searchBox = document.getElementById('shopSearchBox');
         let activeCategory = 'all';
+        let activeSearchQuery = '';
 
         function displayProducts() {
             container.innerHTML = ''; 
+            let itemsRendered = 0;
+
             products.forEach((item, index) => {
-                if (activeCategory === 'all' || item.category === activeCategory) {
+                const matchesCategory = (activeCategory === 'all' || item.category === activeCategory);
+                const matchesSearch = item.title.toLowerCase().includes(activeSearchQuery.toLowerCase()) || 
+                                      item.tag.toLowerCase().includes(activeSearchQuery.toLowerCase());
+
+                if (matchesCategory && matchesSearch) {
+                    itemsRendered++;
                     const cardHtml = `
                         <div class="gallery-item" onclick="launchProductModal(${index})">
                             <div class="img-box">
@@ -521,6 +568,24 @@
                     container.innerHTML += cardHtml;
                 }
             });
+
+            if (itemsRendered === 0) {
+                container.innerHTML = `
+                    <div style="grid-column: 1 / -1; text-align: center; padding: 60px 0; color: var(--color-temple-maroon); opacity: 0.6; font-style: italic; font-size: 1rem;">
+                        No studio creations found matching your current filters or key words.
+                    </div>
+                `;
+            }
+        }
+
+        function handleSearchExecution(value) {
+            activeSearchQuery = value.trim();
+            displayProducts();
+        }
+
+        function focusSearch() {
+            searchBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => { searchBox.focus(); }, 500);
         }
 
         function launchProductModal(index) {
@@ -546,30 +611,27 @@
             const buttons = document.querySelectorAll('.filter-btn');
             buttons.forEach(btn => btn.classList.remove('active'));
             
-            // Handle edge safety check when filtering is driven via direct URL parameter onboot
             const targetBtn = document.getElementById('btn-' + category);
-            if (targetBtn) {
-                targetBtn.classList.add('active');
-            }
+            if (targetBtn) { targetBtn.classList.add('active'); }
+            
             displayProducts();
         }
 
-        /* 
-           CROSS-PAGE INTERACTIVE INTELLIGENCE:
-           Scans the inbound URL parameters on layout boot execution.
-           If a '?filter=' query is detected, it intercepts the active display parameters automatically.
-        */
         function initializeEcosystemRouting() {
             const URLParameters = new URLSearchParams(window.location.search);
             const activeFilterQuery = URLParameters.get('filter');
+            const focusQuery = URLParameters.get('focus');
             
             if (activeFilterQuery && ['jewellery', 'accessories', 'quilling'].includes(activeFilterQuery)) {
                 activeCategory = activeFilterQuery;
             }
             filterGallery(activeCategory);
+
+            if (focusQuery === 'search') {
+                setTimeout(focusSearch, 500);
+            }
         }
 
-        // Trigger dynamic entry analysis loop
         initializeEcosystemRouting();
     </script>
 </body>

@@ -128,7 +128,6 @@
             transition: var(--transition);
         }
 
-        /* Specialized Styling for Native Browsing Element Wrapper */
         .file-browser-input {
             padding: 10px !important;
             background-color: var(--color-white) !important;
@@ -185,18 +184,26 @@
             border-color: #e74c3c;
         }
 
-        /* --- TABLE RECORD SHEETS --- */
-        .inventory-panel h2 {
+        /* --- PANELS & TABLES --- */
+        .inventory-panel {
+            margin-bottom: 60px;
+        }
+
+        .inventory-panel h2, .inquiries-panel h2 {
             font-family: var(--font-serif);
             color: var(--color-temple-maroon);
             font-size: 1.5rem;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .table-responsive {
             overflow-x: auto;
             background-color: var(--color-white);
             border: 1px solid rgba(74, 14, 23, 0.1);
+            box-shadow: 0 4px 20px rgba(74, 14, 23, 0.01);
         }
 
         table {
@@ -245,28 +252,42 @@
             font-weight: 500;
         }
 
-        /* Action Column Management Typography Filters */
         .action-container {
             display: flex;
-            gap: 15px;
-            align-items: center;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-start;
+            justify-content: center;
         }
 
-        .edit-link {
+        .edit-link, .email-link, .instagram-link {
             color: #2980b9;
             cursor: pointer;
             font-weight: 600;
             background: none;
             border: none;
             font-family: var(--font-sans);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        .edit-link:hover {
+        .instagram-link {
+            color: #e1306c;
+        }
+
+        .edit-link:hover, .email-link:hover {
             text-decoration: underline;
             color: #3498db;
+        }
+
+        .instagram-link:hover {
+            text-decoration: underline;
+            color: #ff5a92;
         }
 
         .remove-link {
@@ -276,14 +297,25 @@
             background: none;
             border: none;
             font-family: var(--font-sans);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
         .remove-link:hover {
             text-decoration: underline;
             color: #e74c3c;
+        }
+
+        .msg-text {
+            font-size: 0.85rem;
+            opacity: 0.85;
+            max-width: 350px;
+            line-height: 1.5;
+            word-break: break-word;
         }
 
         @media (max-width: 768px) {
@@ -327,7 +359,6 @@
                         <input type="text" id="pSize" placeholder="e.g., 4.5cm / 7.5cm / Custom Framed Layout" required>
                     </div>
                     
-                    <!-- REPLACED: Verbatim typing converted into a beautiful System File Picker browser option -->
                     <div class="form-group">
                         <label id="fileInputLabel">Select Reference Image File</label>
                         <input type="file" id="pFileInput" class="file-browser-input" accept="image/*" onchange="captureFilename(event)">
@@ -344,7 +375,7 @@
 
         <!-- LIVE DATABASE INVENTORY LIST MATRIX -->
         <section class="inventory-panel">
-            <h2>Current Repository Matrix</h2>
+            <h2><span>📦</span> Current Repository Matrix</h2>
             <div class="table-responsive">
                 <table>
                     <thead>
@@ -357,16 +388,36 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-                    <tbody id="inventoryTableBody">
-                        <!-- Dynamic content items update automatically inside local runtime cache memory -->
-                    </tbody>
+                    <tbody id="inventoryTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- CLIENT CUSTOM INQUIRIES INBOX TAB PANEL -->
+        <section class="inquiries-panel">
+            <h2><span>📬</span> Bespoke Client Inquiries Inbox</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Client Contact Info</th>
+                            <th>Requested Stream Category</th>
+                            <th>Design Specifications & Requirements</th>
+                            <th>Received Status</th>
+                            <th>Action Controls</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inquiriesTableBody"></tbody>
                 </table>
             </div>
         </section>
     </div>
 
-    <!-- SYNCHRONIZATION BACKEND CONTROLLER SYSTEM -->
+    <!-- MAIN ENGINE CONTROLLER SCRIPT -->
     <script>
+        // =========================================================================
+        // ⚠️ PASTE YOUR REAL BULK PRODUCT ENTRIES INSIDE THIS ARRAY BELOW
+        // =========================================================================
         const fallbackItems = [
             { src: 'earrings.jpg.jpeg', category: 'jewellery', title: 'Traditional Filigree Earrings', size: 'Standard Set', tag: 'Jewellery' },
             { src: 'bracelets.jpg.jpeg', category: 'jewellery', title: 'Handcrafted Festive Bracelet', size: '7.5cm Circumference', tag: 'Jewellery' },
@@ -385,12 +436,9 @@
 
         const tableBody = document.getElementById('inventoryTableBody');
         const trackingLog = document.getElementById('fileTrackingLog');
-        
-        // State variables to manage editing modes smoothly
         let globalSelectedFilename = "";
         let editTargetIndex = -1; 
 
-        // Extract native system file metadata object configuration safely
         function captureFilename(event) {
             if(event.target.files.length > 0) {
                 globalSelectedFilename = event.target.files[0].name;
@@ -398,24 +446,20 @@
             }
         }
 
-        // Render table content layouts with edit tracking links integrated
         function syncTable() {
             tableBody.innerHTML = '';
-            
             coreInventory.forEach((item, idx) => {
                 const rowHtml = `
                     <tr>
-                        <td>
-                            <img src="Image/${item.src}" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=100'">
-                        </td>
-                        <td style="font-weight: 500; color: var(--color-temple-maroon);">${item.title}</td>
+                        <td><img src="Image/${item.src}" class="thumb-img" onerror="this.src='https://images.unsplash.com/photo-1630019852942-f89202989a59?q=80&w=100'"></td>
+                        <td style="font-weight:500; color:var(--color-temple-maroon);">${item.title}</td>
                         <td><span class="tag-badge">${item.tag}</span></td>
                         <td style="font-size:0.85rem; opacity:0.8;">${item.size}</td>
                         <td style="font-family:monospace; font-size:0.8rem; opacity:0.7;">${item.src}</td>
                         <td>
                             <div class="action-container">
-                                <button class="edit-link" onclick="triggerEditMode(${idx})">Edit</button>
-                                <button class="remove-link" onclick="purgeItem(${idx})">Delete</button>
+                                <button class="edit-link" onclick="triggerEditMode(${idx})">🛠️ Edit Item</button>
+                                <button class="remove-link" onclick="purgeItem(${idx})">🗑️ Delete</button>
                             </div>
                         </td>
                     </tr>
@@ -424,21 +468,17 @@
             });
         }
 
-        // Handle consolidated workflow logic rules based on current status
         function handleFormSubmit(event) {
             event.preventDefault();
-            
             const title = document.getElementById('pTitle').value;
             const category = document.getElementById('pCategory').value;
             const size = document.getElementById('pSize').value;
 
-            // In edit configuration, preserve the previous file asset reference if no new item is chosen
             if (editTargetIndex !== -1 && globalSelectedFilename === "") {
                 globalSelectedFilename = coreInventory[editTargetIndex].src;
             }
-
             if (globalSelectedFilename === "") {
-                alert("Please browse and select a design layout photo from your file system.");
+                alert("Please browse and select a design layout photo.");
                 return;
             }
 
@@ -446,77 +486,47 @@
             if (category === 'accessories') computedTag = 'Hair Accents';
             if (category === 'quilling') computedTag = 'Quilling Studio';
 
-            const payload = {
-                src: globalSelectedFilename,
-                category: category,
-                title: title,
-                size: size,
-                tag: computedTag
-            };
+            const payload = { src: globalSelectedFilename, category: category, title: title, size: size, tag: computedTag };
 
-            if (editTargetIndex === -1) {
-                // ADD MODE: Insert clean tracking entry
-                coreInventory.push(payload);
-            } else {
-                // EDIT MODE: Overwrite data map configurations safely at explicit row index
-                coreInventory[editTargetIndex] = payload;
-            }
+            if (editTargetIndex === -1) { coreInventory.push(payload); } 
+            else { coreInventory[editTargetIndex] = payload; }
 
             localStorage.setItem('nithya_inventory', JSON.stringify(coreInventory));
             abortEditMode();
             syncTable();
         }
 
-        // Pull row items configurations back up to form panel to modify
         function triggerEditMode(index) {
             editTargetIndex = index;
             const item = coreInventory[index];
-
-            // Adjust input UI text values maps
             document.getElementById('pTitle').value = item.title;
             document.getElementById('pCategory').value = item.category;
             document.getElementById('pSize').value = item.size;
-            
-            // Retain absolute track visibility of original file target asset context
             globalSelectedFilename = item.src;
             trackingLog.innerText = "Current Registered File: " + item.src;
             document.getElementById('fileInputLabel').innerText = "Change Selected Image (Optional)";
-            document.getElementById('pFileInput').required = false;
-
-            // Flip UI Panel theme aesthetics over to Gold context indicators
             document.getElementById('formPanel').classList.add('edit-mode');
             document.getElementById('panelHeading').innerHTML = "<span>🛠️</span> Edit Existing Studio Creation Context";
             document.getElementById('formSubmitBtn').innerText = "Update Live Treasury";
             document.getElementById('cancelEditBtn').style.display = "inline-block";
-
-            // Smooth slide viewport window back to the top form focus matrix context smoothly
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Terminate active context structures, scrub files inputs completely clear
         function abortEditMode() {
             editTargetIndex = -1;
             globalSelectedFilename = "";
-            
             document.getElementById('inventoryForm').reset();
             trackingLog.innerText = "";
             document.getElementById('fileInputLabel').innerText = "Select Reference Image File";
-            document.getElementById('pFileInput').required = false;
-
             document.getElementById('formPanel').classList.remove('edit-mode');
             document.getElementById('panelHeading').innerHTML = "<span>✨</span> Document New Design Layout";
             document.getElementById('formSubmitBtn').innerText = "Add to Live Treasury";
             document.getElementById('cancelEditBtn').style.display = "none";
         }
 
-        // Delete confirmation logic loop rules
         function purgeItem(targetIndex) {
-            // Force exit state variables maps clear if target row context is currently being active edited
-            if(editTargetIndex === targetIndex) {
-                abortEditMode();
-            }
-
-            if(confirm("Confirm removal of this piece from your database? This immediately unlinks it from the live shop site.")) {
+            if(editTargetIndex === targetIndex) abortEditMode();
+            if(confirm("Confirm removal of this piece from your database?")) {
                 coreInventory.splice(targetIndex, 1);
                 localStorage.setItem('nithya_inventory', JSON.stringify(coreInventory));
                 syncTable();
@@ -524,6 +534,62 @@
         }
 
         syncTable();
+
+        // --- CLIENT INQUIRIES WORKSPACE INTERACTION CONTROLLERS ---
+        const inquiriesTableBody = document.getElementById('inquiriesTableBody');
+
+        const sampleInquiries = [
+            { name: "Ananya Sundaram", email: "ananya@gmail.com", instagram: "ananya_sundaram", category: "Hair Accessory / Bridal Set", message: "Looking for a set of matching customized Muhurtham U-pins with golden accents and dark red beads for an upcoming family wedding function.", date: "Just Now" },
+            { name: "Karthik Raja", email: "karthik.raja@outlook.com", instagram: "karthik_raja_art", category: "Bespoke Quilling Art Canvas", message: "Would love to commission an A4 sized framed traditional Venkateshwara coiled paper art mandala design for my office entryway wall display setup.", date: "2 Hours Ago" }
+        ];
+
+        let coreInquiries = JSON.parse(localStorage.getItem('nithya_inquiries'));
+        if (!coreInquiries) {
+            coreInquiries = sampleInquiries;
+            localStorage.setItem('nithya_inquiries', JSON.stringify(coreInquiries));
+        }
+
+        function fetchLiveInquiries() {
+            inquiriesTableBody.innerHTML = '';
+            
+            if(coreInquiries.length === 0) {
+                inquiriesTableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; opacity:0.6; padding: 30px;">Your custom requests inbox is completely clear.</td></tr>`;
+                return;
+            }
+
+            coreInquiries.forEach((inq, index) => {
+                const row = `
+                    <tr>
+                        <td>
+                            <strong style="color:var(--color-temple-maroon); display:block; font-size:0.95rem;">${inq.name}</strong>
+                            <span style="font-size:0.8rem; opacity:0.7; display:block; margin-top:2px;">✉️ ${inq.email}</span>
+                            <span style="font-size:0.8rem; color:#e1306c; display:block; font-weight:500; margin-top:1px;">📸 @${inq.instagram}</span>
+                        </td>
+                        <td><span class="tag-badge" style="background-color:rgba(74,14,23,0.06); color:var(--color-temple-maroon); font-size:0.65rem;">${inq.category}</span></td>
+                        <td><div class="msg-text">"${inq.message}"</div></td>
+                        <td><span style="font-size:0.75rem; font-weight:500; color:var(--color-antique-gold); text-transform:uppercase;">${inq.date}</span></td>
+                        <td>
+                            <div class="action-container">
+                                <a href="mailto:${inq.email}?subject=Nithya Handcraft Custom Design Consultation" class="email-link">✉️ Email Reply</a>
+                                <a href="https://ig.me/m/${inq.instagram}" target="_blank" class="instagram-link">💬 Instagram DM</a>
+                                <button class="remove-link" style="margin-top:4px;" onclick="purgeInquiry(${index})">🗑️ Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                inquiriesTableBody.innerHTML += row;
+            });
+        }
+
+        function purgeInquiry(idx) {
+            if(confirm("Are you sure you want to delete this custom consultation request? This will wipe it from your dashboard log sheet permanently.")) {
+                coreInquiries.splice(idx, 1);
+                localStorage.setItem('nithya_inquiries', JSON.stringify(coreInquiries));
+                fetchLiveInquiries();
+            }
+        }
+
+        fetchLiveInquiries();
     </script>
 </body>
 </html>
